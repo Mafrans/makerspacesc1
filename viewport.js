@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    setTimeout(function() {
+        location.reload();
+    }, 3600000);
     update();
 });
 
