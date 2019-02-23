@@ -1,58 +1,51 @@
-<!doctype html>
+<!DOCTYPE HTML>
 <html lang="sv">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">	
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="stylesheet.css">
+		<link rel="stylesheet" href="style.css">
 
-    <title>Makerspace Screen 1</title>
-  </head>
-  <body>
-	<div class="page-container">
-		<img src="lib/NTI%20Gymnasiet%20-%20Logotyp%20Slim.png" id="logo">
-		<div class="page page-0 overlay">
-			<hr>
-			<h1>BOKNINGAR</h1>
-			<div id="schedule"></div>
+		<!-- fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Titillium+Web" rel="stylesheet"> 
+
+		<title>Makerspace Screen 1</title>
+	</head>
+	
+	<body>
+		<div class="header">
+			<img class="logo" src="NTI-Gymnasiet-Logotyp.svg">
+			<span class="soleto-medium clock">13:37</span>
 		</div>
-		<div class="page page-1 overlay">
-			<hr>
-			<h1>REGLER</h1>
-			<div id="rules">
-				<ul>
-					<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc mattis malesuada orci vitae fermentum.</li>
-					<li>Ingen mat eller dryck</li>
-					<li>Ingen mat eller dryck</li>
-					<li>Ingen mat eller dryck</li>
-					<li>Ingen mat eller dryck</li>
-				</ul>
+		
+		<h1 class="soleto-xbold title">MAKERSPACE</h1>
+		
+		<div class="schedule">
+			<div class="title-container">
+				<h2 class="soleto-medium title magenta">BOKNINGAR</h2>
+				<h2 class="soleto-medium date">20 APRIL</h2>
+			</div>
+			<div class="row-container">
+				<div class="row">
+					<div class="time-container">
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-
-    <div class="background landscape">
-      <img src="lib/layer_1.png" class="centered-x centered-y" id="landscape-layer_1">
-      <img src="lib/layer_2.png" class="centered-x centered-y" id="landscape-layer_2">
-      <img src="lib/layer_3.png" class="centered-x centered-y" id="landscape-layer_3">
-    </div>
-
-    <div class="background portrait">
-      <img src="lib/layer_1_270deg.png" class="centered-x centered-y" id="portrait-layer_1">
-      <img src="lib/layer_2_270deg.png" class="centered-x centered-y" id="portrait-layer_2">
-      <img src="lib/layer_3_270deg.png" class="centered-x centered-y" id="portrait-layer_3">
-    </div>
+		
+		<footer class="footer">
+			<span class="motd soleto-light center-y">Praise be Malte, Elias and Marcus</span>
+		</div>
+		
 
 
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script src="viewport.js"></script>
-    <script src="background.js"></script>
-  </body>
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+		
+		<!-- Required JavaScript -->
+		<script src="schedule.js"></script>
+	</body>
 </html>

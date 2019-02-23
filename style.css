@@ -1,0 +1,221 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	background: #f0f0f0;
+}
+
+.header {
+	height: 150px;
+	background: #ffffff;
+}
+
+.header .logo  {
+	margin: 40px;
+	margin-left: 50px;
+	height: 70px;
+}
+
+.header .clock {
+	font-size: 60px;
+	float: right;
+	margin: 25px;
+	margin-right: 55px;
+}
+
+h1.title {
+	font-size: 80px;
+	text-align: center;
+	margin: 128px;
+}
+
+.schedule {
+	background: #ffffff;
+}
+
+.schedule .title-container {
+	height: 150px;
+}
+
+.schedule .title {
+	font-size: 50px;
+	margin-top: 40px;
+	margin-left: 60px;
+	float: left;
+}
+.schedule .date {
+	font-size: 50px;
+	margin-top: 40px;
+	margin-right: 60px;
+	float: right;
+}
+
+
+.row-container {
+	padding: 45px;
+	padding-top: 0px;
+}
+.row {
+	height: 55px;
+	text-align: right;
+}
+.schedule-row, .time-container {
+	height: inherit;
+	display: inline-block;
+	width: 80%;
+	overflow: auto;
+}
+
+.schedule-row {	
+	border-left: solid 1px #AAAAAA;
+	border-right: solid 1px #AAAAAA;
+	box-sizing: border-box;
+}
+
+.time-container {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+}
+
+.row-name {
+	position: relative;
+	bottom: 10px;
+	display: inline-block;
+	font-size: 30px;
+	margin-right: 15px;
+	vertical-align: text-bottom;
+}
+.column, .cell {
+	height: 100%;
+	display: inline-block;
+	float: left;
+	position: relative;
+}
+
+.column {
+	text-align: center;
+}
+
+.cell {
+	border-left: solid 1px #AAAAAA;
+	border-right: solid 1px #AAAAAA;
+	box-sizing: border-box;
+}
+.column-name {
+	font-size: 30px;
+}
+
+.booking {
+	position: absolute;
+	height: 55px;
+	overflow: hidden;
+	text-align: left;
+}
+
+.booking .author {
+	color: #ffffff;
+	font-size: 25px;
+	margin: 5px;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0px;
+	height: 150px;
+	width: 100%;
+	background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.footer .motd {
+	position: relative;
+	font-size: 32px;
+	margin: 20px;
+	text-align: center;
+}
+
+/* Font replacements */
+.soleto-medium {
+	font-family: 'Titillium Web', sans-serif;
+	font-weight: 500;
+}
+.soleto-regular {
+	font-family: 'Titillium Web', sans-serif;
+	font-weight: 400;
+}
+.soleto-light {
+	font-family: 'Titillium Web', sans-serif;
+	font-weight: 300;
+}
+.soleto-xbold {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 800;
+}
+
+/* color scheme */
+.magenta {
+	color: #DD0890;
+}
+.magenta-fill {
+	background: #DD0890;
+}
+.ultraviolet {
+	color: #4B0082;
+}
+.ultraviolet-fill {
+	background: #4B0082;
+}
+.turqoisemint {
+	color: #0DE1EC;
+}
+.turqoisemint-fill {
+	background: #0DE1EC;
+}
+.ultramarine {
+	color: #200C9C;
+}
+.ultramarine-fill {
+	background: #200C9C;
+}
+.granitegray {
+	color: #F0F0F0;
+}
+.granitegray-fill {
+	background: #F0F0F0;
+}
+.coalgray {
+	color: #222222;
+}
+.coalgray-fill {
+	background: #222222;
+}
+.gray {
+	color: #AAAAAA;
+}
+.gray-fill {
+	background: #AAAAAA;
+}
+
+/* micro clearfix */
+.cf:before,
+.cf:after {
+  content: " "; /* 1 */
+  display: table; /* 2 */
+}
+
+.cf:after {
+  clear: both;
+}
+
+/**
+* For IE 6/7 only
+* Include this rule to trigger hasLayout and contain floats.
+*/
+.cf {
+  *zoom: 1;
+}
