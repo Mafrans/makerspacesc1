@@ -6,6 +6,8 @@
 body {
 	background: #f0f0f0;
 	overflow: hidden;
+	width: 1080px;
+	height: 1920px;
 }
 
 .header {
@@ -126,7 +128,7 @@ h1.title {
 	position: absolute;
 	bottom: 0px;
 	height: 150px;
-	width: 100%;
+	width: 1080px;
 	background: #ffffff;
     display: flex;
     flex-direction: column;
