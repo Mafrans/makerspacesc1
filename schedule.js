@@ -1,5 +1,47 @@
 // Default json shown if no response is received from the API
-var json = {"equipment":["Dator 1","Dator 2","Dator 3","3d Skrivare 1","3d Skrivare 2"],"bookings":[{"equipment":"Dator 1","author":"En Person1","timeStart":20,"timeEnd":100},{"equipment":"Dator 2","author":"En Person3","timeStart":20,"timeEnd":100},{"equipment":"Dator 3","author":"En Person4","timeStart":40,"timeEnd":100}]}
+var json = 
+{
+  "equipment": [
+    "Dator 1",
+    "Dator 2",
+    "Dator 3",
+    "3d Skrivare 1",
+    "3d Skrivare 2"
+  ],
+  "bookings": [
+    {
+      "equipment": "Dator 1",
+      "author": "API-Fel ",
+      "timeStart": 0,
+      "timeEnd": 100
+    },
+    {
+      "equipment": "Dator 2",
+      "author": "API-Fel ",
+      "timeStart": 100,
+      "timeEnd": 200
+    },
+    {
+      "equipment": "Dator 3",
+      "author": "API-Fel ",
+      "timeStart": 200,
+      "timeEnd": 300
+    },
+    {
+      "equipment": "3d Skrivare 1",
+      "author": "API-Fel ",
+      "timeStart": 300,
+      "timeEnd": 400
+    },
+    {
+      "equipment": "3d Skrivare 2",
+      "author": "API-Fel ",
+      "timeStart": 400,
+      "timeEnd": 480
+    }
+  ]
+}
+
 
 // Amount of columns
 var columns = 8;
@@ -124,8 +166,8 @@ function updateSchedule(input) {
             `
         ));
 		elem.css("left", $($(".schedule-row")[index]).position.left);
-		elem.css("margin-left", (100/columns/60)*booking.timeStart*(1080/100));
-		elem.css("width", (100/columns/60)*(booking.timeEnd - booking.timeStart)*(1080/100));
+		elem.css("margin-left", (100/columns/60)*booking.timeStart*($(".schedule-row").width()/100));
+		elem.css("width", (100/columns/60)*(booking.timeEnd - booking.timeStart)*($(".schedule-row").width()/100));
 		var color = colors[Math.round(random(booking.author) * (colors.length-1))];
 		elem.css("background", color);
 		
