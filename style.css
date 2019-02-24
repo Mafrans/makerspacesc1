@@ -6,8 +6,8 @@
 body {
 	background: #f0f0f0;
 	overflow: hidden;
+	overflow-y: scroll;
 	width: 1080px;
-	height: 1920px;
 }
 
 .header {
@@ -140,85 +140,4 @@ h1.title {
 	font-size: 32px;
 	margin: 20px;
 	text-align: center;
-}
-
-/* Font replacements */
-.soleto-medium {
-	font-family: 'Titillium Web', sans-serif;
-	font-weight: 500;
-}
-.soleto-regular {
-	font-family: 'Titillium Web', sans-serif;
-	font-weight: 400;
-}
-.soleto-light {
-	font-family: 'Titillium Web', sans-serif;
-	font-weight: 300;
-}
-.soleto-xbold {
-	font-family: 'Open Sans', sans-serif;
-	font-weight: 800;
-}
-
-/* color scheme */
-.magenta {
-	color: #DD0890;
-}
-.magenta-fill {
-	background: #DD0890;
-}
-.ultraviolet {
-	color: #4B0082;
-}
-.ultraviolet-fill {
-	background: #4B0082;
-}
-.turqoisemint {
-	color: #0DE1EC;
-}
-.turqoisemint-fill {
-	background: #0DE1EC;
-}
-.ultramarine {
-	color: #200C9C;
-}
-.ultramarine-fill {
-	background: #200C9C;
-}
-.granitegray {
-	color: #F0F0F0;
-}
-.granitegray-fill {
-	background: #F0F0F0;
-}
-.coalgray {
-	color: #222222;
-}
-.coalgray-fill {
-	background: #222222;
-}
-.gray {
-	color: #AAAAAA;
-}
-.gray-fill {
-	background: #AAAAAA;
-}
-
-/* micro clearfix */
-.cf:before,
-.cf:after {
-  content: " "; /* 1 */
-  display: table; /* 2 */
-}
-
-.cf:after {
-  clear: both;
-}
-
-/**
-* For IE 6/7 only
-* Include this rule to trigger hasLayout and contain floats.
-*/
-.cf {
-  *zoom: 1;
 }

@@ -1,15 +1,45 @@
+// Default json shown if no response is received from the API
 var json = {"equipment":["Dator 1","Dator 2","Dator 3","3d Skrivare 1","3d Skrivare 2"],"bookings":[{"equipment":"Dator 1","author":"En Person1","timeStart":20,"timeEnd":100},{"equipment":"Dator 2","author":"En Person3","timeStart":20,"timeEnd":100},{"equipment":"Dator 3","author":"En Person4","timeStart":40,"timeEnd":100}]}
+
+// Amount of columns
 var columns = 8;
+
+// The hour in which to start the table, every column is one hour
 var startHour = 8;
+
+// The api url to communicate with
 var restUrl = "https://ljhfuiuhpqwiiqqlqatvpyyydolrsw.herokuapp.com/";
 
-var colors = ["#DD0890", "#4B0082", "#0DE1EC", "#200C9C"]
+// The colors that are randomly assigned to every individual author.
+var colors = ["#DD0890", "#4B0082", "#200C9C"];
+
+// Months of the year, self explanatory
 var months = ["Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "Oktober", "November", "December"]
 
 $(document).ready(function() {
     
-    var rowAmount = json.equipment.length;
+    generateRows();
+    generateColumns();
+    generateCells();
     
+    // Move the column container slightly left, to keep the columns in position
+    $(".time-container").css("width", $(".column").width()*(columns+1));
+    $(".time-container").css("left", $(".column").width()/2);
+    
+	// Run the different timers, these are recursive and automatically puts themselves on a timer
+	updateBookings();
+	updateTime();
+	updateMotd();
+});
+
+    
+// Generate the row elements
+// One row is generated per device found in "equipment"
+// On top of that there is also one row containing the numbers displayed above the table
+function generateRows() {
+	var rowAmount = json.equipment.length;
+    
+	// Generate the main rows responsible for containing the table
     for(var i = 0; i < rowAmount; i++) {
         var elem = $($.parseHTML(
             `
@@ -27,8 +57,15 @@ $(document).ready(function() {
         
         $(".row-container").append(elem);
     }
-    
-    for(var i = 0; i < columns+1; i++) {
+	
+	
+}
+
+
+// Generate columns at the top of the table
+// These are responsible for holding the time indicators
+function generateColumns() {
+	for(var i = 0; i < columns+1; i++) {
         var elem = $($.parseHTML(
             `
             <div class='column'>
@@ -39,8 +76,13 @@ $(document).ready(function() {
         elem.css("width", $(".schedule-row").width()/columns);
         $(".time-container").append(elem);
     }
-    
-    for(var i = 0; i < columns; i++) {
+}
+
+
+// Generate the cells populating the schedule rows.
+// These cells have borders on each side and are purely for aesthetic purposes
+function generateCells() {
+	for(var i = 0; i < columns; i++) {
         var elem = $($.parseHTML(
             `
             <div class='cell'>
@@ -48,33 +90,25 @@ $(document).ready(function() {
             `
         ));
         elem.css("width", 100/columns + "%");
-        //elem.css("left", 100/columns*i + "%");
         $(".schedule-row").append(elem);
     }
-    
-    $(".time-container").css("width", $(".column").width()*(columns+1));
-    $(".time-container").css("left", $(".column").width()/2);
-    
-	runTimer();
-	setInterval(function() {
-		runTimer();
-	}, 300000);
-	
-	updateTime();
-	updateMotd();
-	setTimeout(updateTime, 60000);
-	setTimeout(updateMotd, 600000);
-});
-
-function runTimer() {
-	httpGetAsync(restUrl, updateSchedule);
 }
 
+
+// Updates the API
+function updateBookings() {
+	httpGetAsync(restUrl, updateSchedule);
+	setTimeout(updateBookings, 300000);
+}
+
+// Takes input received from the api and parses it'
+// Names are truncated to save space
 function updateSchedule(input) {
-    json = input;
+	if(input.bookings !== undefined) {
+		json = input;
+	}
     
 	$(".booking").remove();
-	if(json.bookings === undefined) return;
 	
     for(var i = 0; i < json.bookings.length; i++) {
         var booking = json.bookings[i];
@@ -90,8 +124,8 @@ function updateSchedule(input) {
             `
         ));
 		elem.css("left", $($(".schedule-row")[index]).position.left);
-		elem.css("margin-left", (100/columns/60)*booking.timeStart + "%");
-		elem.css("width", (100/columns/60)*(booking.timeEnd - booking.timeStart) + "%");
+		elem.css("margin-left", (100/columns/60)*booking.timeStart*(1080/100));
+		elem.css("width", (100/columns/60)*(booking.timeEnd - booking.timeStart)*(1080/100));
 		var color = colors[Math.round(random(booking.author) * (colors.length-1))];
 		elem.css("background", color);
 		
@@ -99,6 +133,7 @@ function updateSchedule(input) {
     }
 }
 
+// Updates the various timestamps on the page
 function updateTime() {
 	var time = new Date();
 
@@ -108,6 +143,7 @@ function updateTime() {
 	setTimeout(updateTime, 60000);
 }
 
+// Updates the message shown at the bottom of the page
 function updateMotd() {
 	var messages = [
 		"\"You’re off to great places, today is your day. Your mountain is waiting, so get on your way.\"<br/><i>- Dr. Seuss</i>",
@@ -123,16 +159,21 @@ function updateMotd() {
 	setTimeout(updateMotd, 600000);
 }
 
-function random(sseed) {
-	var seed = 0;
-	for(var i = 0; i < sseed.length; i++) {
-		seed += sseed.charCodeAt(i);
+// Generates a random number between 0 and 1
+// Takes a seed argument, use Math.random() to get a random number without a seed
+// Relatively performance heavy, use with care
+function random(seed) {
+	var iseed = 1;
+	for(var i = 0; i < seed.length; i++) {
+		iseed += seed.charCodeAt(i);
 	}
 	
-    var x = Math.sin(seed++);
+    var x = Math.sin(iseed++);
     return x - Math.floor(x);
 }
 
+// Async http GET request function
+// Found on stackoverflow, thanks <3
 function httpGetAsync(url, callback) {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() { 
