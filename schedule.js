@@ -80,6 +80,8 @@ function generateColumns() {
             `
         ));
         elem.css("width", $(".schedule-row").width()/columns);
+        elem.css("left", $(".schedule-row").width()/columns*1.5);
+        $(".time-container").css("width", 1080)
         $(".time-container").append(elem);
     }
 }
@@ -111,7 +113,7 @@ function updateBookings() {
 // Names are truncated to save space
 function updateSchedule(input) {
 	json = JSON.parse(input);
-	console.log(input);
+	$(".row-container").html('<div class="time-container"></div>');
     generateRows();
     generateColumns();
     generateCells();
