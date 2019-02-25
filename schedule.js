@@ -8,38 +8,7 @@ var json =
     "3d Skrivare 1",
     "3d Skrivare 2"
   ],
-  "bookings": [
-    {
-      "equipment": "Dator 1",
-      "author": "API-Fel ",
-      "timeStart": 0,
-      "timeEnd": 100
-    },
-    {
-      "equipment": "Dator 2",
-      "author": "API-Fel ",
-      "timeStart": 100,
-      "timeEnd": 200
-    },
-    {
-      "equipment": "Dator 3",
-      "author": "API-Fel ",
-      "timeStart": 200,
-      "timeEnd": 300
-    },
-    {
-      "equipment": "3d Skrivare 1",
-      "author": "API-Fel ",
-      "timeStart": 300,
-      "timeEnd": 400
-    },
-    {
-      "equipment": "3d Skrivare 2",
-      "author": "API-Fel ",
-      "timeStart": 400,
-      "timeEnd": 480
-    }
-  ]
+  "bookings": []
 }
 
 
@@ -146,11 +115,10 @@ function updateBookings() {
 // Takes input received from the api and parses it'
 // Names are truncated to save space
 function updateSchedule(input) {
-	if(input.bookings !== undefined) {
-		json = input;
-	}
-    
+	json = JSON.parse(input);
 	$(".booking").remove();
+	
+	if(json.bookings === undefined) return;
 	
     for(var i = 0; i < json.bookings.length; i++) {
         var booking = json.bookings[i];
