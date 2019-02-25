@@ -116,6 +116,7 @@ function updateBookings() {
 // Names are truncated to save space
 function updateSchedule(input) {
 	json = JSON.parse(input);
+	console.log(input);
 	$(".booking").remove();
 	
 	if(json.bookings === undefined) return;
@@ -124,7 +125,7 @@ function updateSchedule(input) {
         var booking = json.bookings[i];
         var index = json.equipment.indexOf(booking.equipment);
 		
-		var authorTruncated = booking.author.split(" ")[0] + " " + booking.author.split(" ")[1].substring(0, 1);
+		var authorTruncated = booking.author.substring(0, booking.author.indexOf(" ") + 2);
 		
         var elem = $($.parseHTML(
             `
