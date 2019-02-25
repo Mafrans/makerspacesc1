@@ -56,7 +56,7 @@ h1.title {
 
 
 .row-container {
-	padding: 45px;
+	padding: 60px;
 	padding-top: 0px;
 }
 .row {
@@ -71,8 +71,8 @@ h1.title {
 }
 
 .schedule-row {	
-	border-left: solid 1px #AAAAAA;
-	border-right: solid 1px #AAAAAA;
+	border-left: solid 1px rgba(0,0,0,0.1);
+	border-right: solid 1px rgba(0,0,0,0.1);
 	box-sizing: border-box;
 }
 
@@ -102,8 +102,8 @@ h1.title {
 }
 
 .cell {
-	border-left: solid 1px #AAAAAA;
-	border-right: solid 1px #AAAAAA;
+	border-left: solid 1px rgba(0,0,0,0.1);
+	border-right: solid 1px rgba(0,0,0,0.1);
 	box-sizing: border-box;
 }
 .column-name {
@@ -140,4 +140,24 @@ h1.title {
 	font-size: 32px;
 	margin: 20px;
 	text-align: center;
+}
+
+.time-bar {
+	position: absolute;
+	height: 500px;
+	width: 1px;
+	left: 100px;
+	border-left: 5px dotted #4B0082;
+	z-index: 1;
+}
+
+.time-bar .circle {
+	position: inherit;
+	border-radius: 50%;
+	float: left;
+	width: 12px;
+	height: 12px;
+	border: 4px solid #4B0082;
+	margin-left: -12px;
+	margin-top: -20px;
 }

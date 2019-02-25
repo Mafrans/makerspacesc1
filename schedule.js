@@ -58,7 +58,7 @@ function generateRows() {
         ));
         
         if(i % 2 == 0) {
-            elem.find(".schedule-row").addClass("granitegray-fill");
+            elem.find(".schedule-row").addClass("granitegray-fill-50");
         }
         
         $(".row-container").append(elem);
@@ -142,6 +142,9 @@ function updateSchedule(input) {
 		
         $($(".schedule-row")[index]).append(elem);
     }
+	
+	// Update time to position time bar
+	updateTime();
 }
 
 // Updates the various timestamps on the page
@@ -150,6 +153,22 @@ function updateTime() {
 
 	$(".clock").text(time.toLocaleTimeString().substring(0, 5));
 	$(".date").text(time.getDate() + " " + months[time.getMonth()].toUpperCase());
+	
+	$(".time-bar").css("height", $(".row-container").height() - 10);
+	$(".time-bar").css("margin-top", 10);
+	
+	var currentDate = new Date();
+	var oldDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 8, 00);
+	
+	if($(".schedule-row").position() !== undefined) {
+		$(".time-bar").css("left", $(".schedule-row").position().left + (100/columns/60)*((currentDate-oldDate)/60000)*($(".schedule-row").width()/100));
+		if((100/columns/60)*((currentDate-oldDate)/60000) > 100 || (100/columns/60)*((currentDate-oldDate)/60000) < 0) {
+			$(".time-bar").hide();
+		}
+		else {
+			$(".time-bar").show();
+		}
+	}
 	
 	setTimeout(updateTime, 10000);
 }
@@ -166,7 +185,11 @@ function updateMotd() {
 		"\"The way I see it, if you want the rainbow, you gotta put up with the rain.\"<br/><i>- Dolly Parton</i>",
 	]
 	
-	$(".motd").html(messages[Math.round(Math.random()*(messages.length-1))]);
+	var message = messages[Math.round(Math.random()*(messages.length-1))];
+	
+	console.log(message);
+	
+	$(".motd").html(message);
 	setTimeout(updateMotd, 600000);
 }
 

@@ -1,7 +1,7 @@
 /* Font replacements */
 .soleto-medium {
 	font-family: 'Titillium Web', sans-serif;
-	font-weight: 500;
+	font-weight: 600;
 }
 .soleto-regular {
 	font-family: 'Titillium Web', sans-serif;
@@ -46,6 +46,9 @@
 }
 .granitegray-fill {
 	background: #F0F0F0;
+}
+.granitegray-fill-50 {
+	background: rgba(240, 240, 240, 0.5);
 }
 .coalgray {
 	color: #222222;
