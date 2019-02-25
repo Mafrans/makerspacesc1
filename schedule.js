@@ -28,19 +28,14 @@ var colors = ["#DD0890", "#4B0082", "#200C9C"];
 var months = ["Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "Oktober", "November", "December"]
 
 $(document).ready(function() {
-    
-    generateRows();
-    generateColumns();
-    generateCells();
-    
-    // Move the column container slightly left, to keep the columns in position
-    $(".time-container").css("width", $(".column").width()*(columns+1));
-    $(".time-container").css("left", $(".column").width()/2);
-    
 	// Run the different timers, these are recursive and automatically puts themselves on a timer
 	updateBookings();
 	updateTime();
 	updateMotd();
+    
+    // Move the column container slightly left, to keep the columns in position
+    $(".time-container").css("width", $(".column").width()*(columns+1));
+    $(".time-container").css("left", $(".column").width()/2);
 });
 
     
@@ -117,6 +112,9 @@ function updateBookings() {
 function updateSchedule(input) {
 	json = JSON.parse(input);
 	console.log(input);
+    generateRows();
+    generateColumns();
+    generateCells();
 	$(".booking").remove();
 	
 	if(json.bookings === undefined) return;
