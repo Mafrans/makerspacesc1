@@ -109,7 +109,7 @@ function generateCells() {
 // Updates the API
 function updateBookings() {
 	httpGetAsync(restUrl, updateSchedule);
-	setTimeout(updateBookings, 300000);
+	setTimeout(updateBookings, 60000);
 }
 
 // Takes input received from the api and parses it'
@@ -151,7 +151,7 @@ function updateTime() {
 	$(".clock").text(time.toLocaleTimeString().substring(0, 5));
 	$(".date").text(time.getDate() + " " + months[time.getMonth()].toUpperCase());
 	
-	setTimeout(updateTime, 60000);
+	setTimeout(updateTime, 10000);
 }
 
 // Updates the message shown at the bottom of the page

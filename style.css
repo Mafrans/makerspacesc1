@@ -6,7 +6,6 @@
 body {
 	background: #f0f0f0;
 	overflow: hidden;
-	overflow-y: scroll;
 	width: 1080px;
 }
 
