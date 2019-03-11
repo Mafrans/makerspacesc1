@@ -19,7 +19,7 @@ var columns = 8;
 var startHour = 8;
 
 // The api url to communicate with
-var restUrl = "https://ljhfuiuhpqwiiqqlqatvpyyydolrsw.herokuapp.com/?requestScreenData";
+var restUrl = "https://ntig-makerspace.herokuapp.com/?requestScreenData";
 
 // The colors that are randomly assigned to every individual author.
 var colors = ["#DD0890", "#4B0082", "#200C9C"];
