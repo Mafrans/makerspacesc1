@@ -175,7 +175,7 @@ function updateTime() {
 
 // Updates the message shown at the bottom of the page
 function updateMotd() {
-	var messages = [
+	var quotes = [
 		"\"You’re off to great places, today is your day. Your mountain is waiting, so get on your way.\"<br/><i>- Dr. Seuss</i>",
 		"\"No one is perfect - that’s why pencils have erasers.\"<br/><i>- Wolfgang Riebe</i>",
 		"\"It always seems impossible until it is done.\"<br/><i>- Nelson Mandela</i>",
@@ -185,11 +185,9 @@ function updateMotd() {
 		"\"The way I see it, if you want the rainbow, you gotta put up with the rain.\"<br/><i>- Dolly Parton</i>",
 	]
 	
-	var message = messages[Math.round(Math.random()*(messages.length-1))];
+	//var message = messages[Math.round(Math.random()*(messages.length-1))];
 	
-	console.log(message);
-	
-	$(".motd").html(message);
+	$(".motd").html("Boka din tid på ntig-makerspace.tk");
 	setTimeout(updateMotd, 600000);
 }
 
