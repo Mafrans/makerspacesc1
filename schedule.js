@@ -36,6 +36,10 @@ $(document).ready(function() {
     // Move the column container slightly left, to keep the columns in position
     $(".time-container").css("width", $(".column").width()*(columns+1));
     $(".time-container").css("left", $(".column").width()/2);
+
+    setTimeout(function () {
+		location.reload();
+	}, 60000000);
 });
 
     
@@ -148,22 +152,6 @@ function updateSchedule(input) {
 	// Update time to position time bar
 	updateTime();
 	checkVersion();
-}
-
-
-function checkVersion() {
-	console.log(window.location.href.replace("index.html", "") + "project.json");
-	httpGetAsync(window.location.href.replace("index.html", "") + "project.json", function (currentProjectString) {
-		console.log(currentProjectString);
-		var project = JSON.parse(currentProjectString);
-		httpGetAsync("https://raw.githubusercontent.com/Mafrans/makerspacesc1/master/project.json", function (newProjectString) {
-			var newProject = JSON.parse(newProjectString);
-			console.log(newProject);
-			if(project.version < newProject.version) {
-				location.reload();
-			}
-		});
-	});
 }
 
 // Updates the various timestamps on the page
