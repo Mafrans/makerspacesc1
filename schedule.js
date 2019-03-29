@@ -152,6 +152,7 @@ function updateSchedule(input) {
 
 
 function checkVersion() {
+	console.log(window.location.href.replace("index.html", "") + "project.json");
 	httpGetAsync(window.location.href.replace("index.html", "") + "project.json", function (currentProjectString) {
 		console.log(currentProjectString);
 		var project = JSON.parse(currentProjectString);
