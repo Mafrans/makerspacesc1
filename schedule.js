@@ -152,10 +152,11 @@ function updateSchedule(input) {
 
 
 function checkVersion() {
-	readTextFile("project.json", function (currentProjectString) {
+	httpGetAsync(window.location.href.replace("index.html", "project.json"), function (currentProjectString) {
+		console.log(currentProjectString);
 		var project = JSON.parse(currentProjectString);
 		httpGetAsync("https://raw.githubusercontent.com/Mafrans/makerspacesc1/master/project.json", function (newProjectString) {
-			var newProject = JSON.parse(currentProjectString);
+			var newProject = JSON.parse(newProjectString);
 			if(project.version < newProject.version) {
 				location.reload();
 			}
@@ -174,7 +175,7 @@ function updateTime() {
 	$(".time-bar").css("margin-top", 10);
 	
 	var currentDate = new Date();
-	var oldDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 8, 00);
+	var oldDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 8, 0);
 	
 	if($(".schedule-row").position() !== undefined) {
 		$(".time-bar").css("left", $(".schedule-row").position().left + (100/columns/60)*((currentDate-oldDate)/60000)*($(".schedule-row").width()/100));
@@ -230,22 +231,4 @@ function httpGetAsync(url, callback) {
     };
     xmlHttp.open("GET", url, true); // true for asynchronous 
     xmlHttp.send(null);
-}
-
-function readTextFile(file, callback)
-{
-	var rawFile = new XMLHttpRequest();
-	rawFile.open("GET", file, true);
-	rawFile.onreadystatechange = function ()
-	{
-		if(rawFile.readyState === 4)
-		{
-			if(rawFile.status === 200 || rawFile.status == 0)
-			{
-				var allText = rawFile.responseText;
-				callback(allText);
-			}
-		}
-	};
-	rawFile.send(null);
 }
