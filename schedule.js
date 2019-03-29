@@ -137,7 +137,9 @@ function updateSchedule(input) {
 		elem.css("left", $($(".schedule-row")[index]).position.left);
 		elem.css("margin-left", (100/columns/60)*booking.timeStart*($(".schedule-row").width()/100));
 		elem.css("width", (100/columns/60)*(booking.timeEnd - booking.timeStart)*($(".schedule-row").width()/100));
-		var color = colors[Math.round(random(booking.author) * (colors.length-1))];
+
+		//var color = colors[Math.round(random(booking.author) * (colors.length-1))];
+		var color = "rgb(" + (221 - Math.round(random(booking.author) * 100)) + "," + 8 + "," + (144 + Math.round(random(booking.author) * 100)) + ")";
 		elem.css("background", color);
 		
         $($(".schedule-row")[index]).append(elem);
@@ -145,6 +147,20 @@ function updateSchedule(input) {
 	
 	// Update time to position time bar
 	updateTime();
+	checkVersion();
+}
+
+
+function checkVersion() {
+	readTextFile("project.json", function (currentProjectString) {
+		var project = JSON.parse(currentProjectString);
+		httpGetAsync("https://raw.githubusercontent.com/Mafrans/makerspacesc1/master/project.json", function (newProjectString) {
+			var newProject = JSON.parse(currentProjectString);
+			if(project.version < newProject.version) {
+				location.reload();
+			}
+		});
+	});
 }
 
 // Updates the various timestamps on the page
@@ -211,7 +227,25 @@ function httpGetAsync(url, callback) {
     xmlHttp.onreadystatechange = function() { 
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             callback(xmlHttp.responseText);
-    }
+    };
     xmlHttp.open("GET", url, true); // true for asynchronous 
     xmlHttp.send(null);
+}
+
+function readTextFile(file, callback)
+{
+	var rawFile = new XMLHttpRequest();
+	rawFile.open("GET", file, true);
+	rawFile.onreadystatechange = function ()
+	{
+		if(rawFile.readyState === 4)
+		{
+			if(rawFile.status === 200 || rawFile.status == 0)
+			{
+				var allText = rawFile.responseText;
+				callback(allText);
+			}
+		}
+	};
+	rawFile.send(null);
 }
