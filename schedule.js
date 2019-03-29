@@ -152,7 +152,7 @@ function updateSchedule(input) {
 
 
 function checkVersion() {
-	httpGetAsync(window.location.href.replace("index.html", "project.json"), function (currentProjectString) {
+	httpGetAsync(window.location.href.replace("index.html", "") + "project.json", function (currentProjectString) {
 		console.log(currentProjectString);
 		var project = JSON.parse(currentProjectString);
 		httpGetAsync("https://raw.githubusercontent.com/Mafrans/makerspacesc1/master/project.json", function (newProjectString) {
