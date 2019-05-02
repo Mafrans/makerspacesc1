@@ -20,7 +20,7 @@ var startHour = 8;
 
 //TODO change url to server host when server is up.
 // The api url to communicate with
-var restUrl = "http://localhost:8000/api/booking";
+var restUrl = "http://makerspace.umea-ntig.se/api/booking";
 
 // Months of the year, self explanatory
 var months = ["Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "Oktober", "November", "December"]
