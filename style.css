@@ -114,6 +114,7 @@ h1.title {
 	position: absolute;
 	height: 55px;
 	overflow: hidden;
+	white-space: nowrap;
 	text-align: left;
 }
 

@@ -18,11 +18,9 @@ var columns = 8;
 // The hour in which to start the table, every column is one hour
 var startHour = 8;
 
+//TODO change url to server host when server is up.
 // The api url to communicate with
-var restUrl = "https://ntig-makerspace.herokuapp.com/?requestScreenData";
-
-// The colors that are randomly assigned to every individual author.
-var colors = ["#DD0890", "#4B0082", "#200C9C"];
+var restUrl = "http://makerspace.umea-ntig.se/api/booking";
 
 // Months of the year, self explanatory
 var months = ["Januari", "Februari", "Mars", "April", "Maj", "Juni", "Juli", "Augusti", "Oktober", "November", "December"]
@@ -31,8 +29,7 @@ $(document).ready(function() {
 	// Run the different timers, these are recursive and automatically puts themselves on a timer
 	updateBookings();
 	updateTime();
-	updateMotd();
-    
+
     // Move the column container slightly left, to keep the columns in position
     $(".time-container").css("width", $(".column").width()*(columns+1));
     $(".time-container").css("left", $(".column").width()/2);
@@ -116,6 +113,8 @@ function updateBookings() {
 // Takes input received from the api and parses it'
 // Names are truncated to save space
 function updateSchedule(input) {
+	console.log(input);
+	console.log(restUrl);
 	json = JSON.parse(input);
 	$(".row-container").html('<div class="time-container"></div>');
     generateRows();
@@ -129,7 +128,7 @@ function updateSchedule(input) {
         var booking = json.bookings[i];
         var index = json.equipment.indexOf(booking.equipment);
 		
-		var authorTruncated = booking.author.substring(0, booking.author.indexOf(" ") + 2);
+		var authorTruncated = booking.name.substring(0, booking.name.indexOf(" ") + 2);
 		
         var elem = $($.parseHTML(
             `
@@ -139,19 +138,17 @@ function updateSchedule(input) {
             `
         ));
 		elem.css("left", $($(".schedule-row")[index]).position.left);
-		elem.css("margin-left", (100/columns/60)*booking.timeStart*($(".schedule-row").width()/100));
-		elem.css("width", (100/columns/60)*(booking.timeEnd - booking.timeStart)*($(".schedule-row").width()/100));
+		elem.css("margin-left", (100/columns/60)*booking.start*($(".schedule-row").width()/100));
+		elem.css("width", (100/columns/60)*(booking.end - booking.start)*($(".schedule-row").width()/100));
 
-		//var color = colors[Math.round(random(booking.author) * (colors.length-1))];
-		var color = "rgb(" + (221 - Math.round(random(booking.author) * 100)) + "," + 8 + "," + (144 + Math.round(random(booking.author) * 100)) + ")";
+		//var color = colors[Math.round(random(booking.name) * (colors.length-1))];
+		var color = "rgb(" + (221 - Math.round(random(booking.name) * 100)) + "," + 8 + "," + (144 + Math.round(random(booking.name) * 100)) + ")";
 		elem.css("background", color);
 		
         $($(".schedule-row")[index]).append(elem);
     }
-	
 	// Update time to position time bar
 	updateTime();
-	checkVersion();
 }
 
 // Updates the various timestamps on the page
@@ -178,24 +175,6 @@ function updateTime() {
 	}
 	
 	setTimeout(updateTime, 10000);
-}
-
-// Updates the message shown at the bottom of the page
-function updateMotd() {
-	var quotes = [
-		"\"You’re off to great places, today is your day. Your mountain is waiting, so get on your way.\"<br/><i>- Dr. Seuss</i>",
-		"\"No one is perfect - that’s why pencils have erasers.\"<br/><i>- Wolfgang Riebe</i>",
-		"\"It always seems impossible until it is done.\"<br/><i>- Nelson Mandela</i>",
-		"\"The only time you fail is when you fall down and stay down.\"<br/><i>- Stephen Richards</i>",
-		"\"Computers are bicycle for our minds.\"<br/><i>- Steve Jobs</i>",
-		"\"If opportunity doesn’t knock, build a door.\"<br/><i>- Milton Berle</i>",
-		"\"The way I see it, if you want the rainbow, you gotta put up with the rain.\"<br/><i>- Dolly Parton</i>",
-	]
-	
-	//var message = messages[Math.round(Math.random()*(messages.length-1))];
-	
-	$(".motd").html("Boka din tid på ntig-makerspace.tk");
-	setTimeout(updateMotd, 600000);
 }
 
 // Generates a random number between 0 and 1
